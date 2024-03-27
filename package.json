@@ -1,7 +1,7 @@
 {
-  "name": "web3-plugin-template",
+  "name": "web3-plugin-faucettestnet",
   "version": "1.0.0",
-  "description": "Template plugin to extend web3.js with additional methods",
+  "description": "A web3.js Faucet Plugin for Testnets using web3.js, Tableland, and smart contracts",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "homepage": "https://github.com/web3/web3.js-plugin-template#readme",
