@@ -1,29 +1,32 @@
 // src/services/faucetService.ts
 
 import Web3 from 'web3';
-import { updateTableland } from './tablelandService';
 
-const web3 = new Web3('https://ropsten.infura.io/v3/YOUR_INFURA_PROJECT_ID');
+export class FaucetService {
+ private web3: Web3;
+ private privateKey: string;
+ private gasPrice: number;
+ private gasLimit: number;
 
-const faucetAddress = 'YOUR_FAUCET_ACCOUNT_ADDRESS';
+ constructor(network: string, privateKey: string, gasPrice: number, gasLimit: number) {
+    this.web3 = new Web3(network);
+    this.privateKey = privateKey;
+    this.gasPrice = gasPrice;
+    this.gasLimit = gasLimit;
+ }
 
-export const sendEther = async (toAddress: string, amount: number): Promise<void> => {
- try {
-    const transaction = {
-      from: faucetAddress,
-      to: toAddress,
-      value: web3.utils.toWei(amount.toString(), 'ether'),
-      gas: 21000,
-      gasPrice: web3.utils.toWei('20', 'gwei'),
+ async sendTransaction(to: string, amount: number) {
+    const account = this.web3.eth.accounts.privateKeyToAccount(this.privateKey);
+    const tx = {
+      from: account.address,
+      to,
+      value: this.web3.utils.toWei(amount.toString(), 'ether'),
+      gas: this.gasLimit,
+      gasPrice: this.web3.utils.toWei(this.gasPrice.toString(), 'gwei'),
     };
 
-    const receipt = await web3.eth.sendTransaction(transaction);
-    console.log('Transaction receipt:', receipt);
-
-    // Update Tableland after sending Ether
-    await updateTableland(toAddress);
- } catch (error) {
-    console.error('Error sending Ether:', error);
-    // Handle the error appropriately, e.g., retry, notify the user, etc.
+    const signedTx = await this.web3.eth.accounts.signTransaction(tx, this.privateKey);
+    const receipt = await this.web3.eth.sendSignedTransaction(signedTx.rawTransaction);
+    return receipt;
  }
-};
+}
