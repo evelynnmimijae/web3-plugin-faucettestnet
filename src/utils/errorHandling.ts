@@ -1,5 +1,4 @@
 // src/utils/errorHandling.ts
-// src/services/tablelandService.ts
 
 import { FaucetService } from '../services/faucetService';
 import { TablelandService } from '../services/tablelandService';
