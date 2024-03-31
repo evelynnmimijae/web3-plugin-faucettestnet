@@ -1,7 +1,7 @@
 // src/utils/errorHandling.ts
 
 import { FaucetService } from '../services/faucetService';
-import { TablelandService } from '../services/tablelandService';
+import { getDataFromTableland, updateTableland } from '../services/tablelandService';
 
 // Custom error types
 class FaucetError extends Error {
@@ -56,9 +56,9 @@ export async function sendTransactionWithErrorHandling(faucetService: FaucetServ
 }
 
 // Example usage in TablelandService
-export async function storeRequestWithErrorHandling(tablelandService: TablelandService, userId: string, requestDetails: any): Promise<void> {
+export async function storeRequestWithErrorHandling(userId: string, requestDetails: any): Promise<void> {
  try {
-    await retryOperation(() => tablelandService.storeRequest(userId, requestDetails));
+    await retryOperation(() => updateTableland(userId));
  } catch (error) {
     logError(error);
     sendErrorNotification(error);
