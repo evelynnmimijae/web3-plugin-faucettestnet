@@ -1,22 +1,31 @@
 // src/ethereum/index.ts
 
-import Web3 from 'web3';
 import { ethereumConfig } from '../config';
 import { initializeWeb3 } from './web3Instance';
 
-const web3 = new Web3(ethereumConfig.network);
+// Use the Web3 instance initialized in web3Instance.ts
+const web3 = initializeWeb3();
 
 export async function sendEther(toAddress: string, amount: number): Promise<void> {
-   const web3 = initializeWeb3();
    const accounts = await web3.eth.getAccounts();
-   const faucetAddress = accounts[0]; // Assuming the faucet is the first account
+   const faucetAddress = accounts[0]; 
   
-   const transaction = {
-      from: faucetAddress, // Include the faucetAddress as the sender
+   // Automatically set the gas price
+   const gasPrice = await web3.eth.getGasPrice();
+
+   // Estimate the gas limit for the transaction
+   const gasLimit = await web3.eth.estimateGas({
+      from: faucetAddress,
       to: toAddress,
       value: web3.utils.toWei(amount.toString(), 'ether'),
-      gas: 21000,
-      gasPrice: web3.utils.toWei('20', 'gwei'),
+   });
+  
+   const transaction = {
+      from: faucetAddress, 
+      to: toAddress,
+      value: web3.utils.toWei(amount.toString(), 'ether'),
+      gas: gasLimit,
+      gasPrice: gasPrice,
    };
   
    try {
@@ -25,17 +34,28 @@ export async function sendEther(toAddress: string, amount: number): Promise<void
    } catch (error) {
       console.error('Error sending Ether:', error);
    }
-  }
+}
 
 export async function sendTransaction(to: string, amount: number) {
- const { privateKey, gasPrice, gasLimit } = ethereumConfig;
+ const { privateKey } = ethereumConfig;
  const account = web3.eth.accounts.privateKeyToAccount(privateKey);
+
+ // Automatically set the gas price
+ const gasPrice = await web3.eth.getGasPrice();
+
+ // Estimate the gas limit for the transaction
+ const gasLimit = await web3.eth.estimateGas({
+    from: account.address,
+    to,
+    value: web3.utils.toWei(amount.toString(), 'ether'),
+ });
+
  const tx = {
     from: account.address,
     to,
     value: web3.utils.toWei(amount.toString(), 'ether'),
     gas: gasLimit,
-    gasPrice: web3.utils.toWei(gasPrice.toString(), 'gwei'),
+    gasPrice: gasPrice,
  };
 
  const signedTx = await web3.eth.accounts.signTransaction(tx, privateKey);
