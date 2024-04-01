@@ -1,11 +1,11 @@
 // src/utils/index.ts
 
-import { hasAddressClaimed, updateClaimRecord } from '../database';
+import { hasaddressClaimed, updateClaimRecord } from '../database';
 import { requestEther } from '../faucet'; // Assuming this is where your requestEther function is located
 
 export async function handleUserRequest(userId: string, requestDetails: any) {
     // Check if the address has already claimed within the last 24 hours
-    const hasClaimed = await hasAddressClaimed(userId);
+    const hasClaimed = await hasaddressClaimed(userId);
     if (hasClaimed) {
         // Provide feedback that the address has already claimed
         provideFeedback(userId, 'You have already claimed Ether within the last 24 hours.');
