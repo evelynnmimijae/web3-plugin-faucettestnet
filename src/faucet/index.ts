@@ -4,6 +4,12 @@ import { checkAddressInTableland, updateTablelandRecord } from '../database';
 import { sendEther } from '../ethereum';
 
 export async function requestEther(address: string, amount: number): Promise<void> {
+    // Simple validation
+ if (!address || !amount || amount <= 0) {
+   console.error('Invalid request: address or amount is missing or invalid.');
+   return;
+}
+
  const hasClaimed = await checkAddressInTableland(address);
 
  if (hasClaimed) {

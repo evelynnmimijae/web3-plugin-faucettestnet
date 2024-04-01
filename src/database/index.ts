@@ -40,9 +40,7 @@ export async function getRequests(userId: string) {
  return response.data;
 }
 
-// Exisisting functions...
-
-export async function hasAddressClaimed(userId: string): Promise<boolean> {
+export async function hasaddressClaimed(userId: string): Promise<boolean> {
    const response = await axios.get(`https://api.tableland.com/v1/databases/${tablelandConfig.databaseId}/documents?userId=${userId}`, {
       headers: {
         'Authorization': `Bearer ${tablelandConfig.apiKey}`,
