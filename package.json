@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@chainsafe/eslint-config": "^2.0.0",
+    "@types/crypto-js": "^4.2.2",
     "@types/jest": "^29.5.2",
     "@types/node": "^20.2.6",
     "eslint": "8",
@@ -37,6 +38,8 @@
     "web3": ">= 4.0.3"
   },
   "dependencies": {
-    "axios": "^1.6.8"
+    "axios": "^1.6.8",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.4.5"
   }
 }

@@ -2,6 +2,20 @@
 
 import { hasaddressClaimed, updateClaimRecord } from '../database';
 import { requestEther } from '../faucet'; // Assuming this is where your requestEther function is located
+import CryptoJS from 'crypto-js';
+
+// Encryption key. This should be stored securely and not hard-coded in your application.
+const ENCRYPTION_KEY = 'YOUR_SECURE_ENCRYPTION_KEY';
+
+export function encryptData(data: string): string {
+    return CryptoJS.AES.encrypt(data, ENCRYPTION_KEY).toString();
+}
+
+export function decryptData(encryptedData: string): string {
+    const bytes = CryptoJS.AES.decrypt(encryptedData, ENCRYPTION_KEY);
+    return bytes.toString(CryptoJS.enc.Utf8);
+}
+
 
 export async function handleUserRequest(userId: string, requestDetails: any) {
     // Check if the address has already claimed within the last 24 hours
