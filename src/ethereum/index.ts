@@ -2,6 +2,7 @@
 
 import Web3 from 'web3';
 import { ethereumConfig } from '../config';
+import { initializeWeb3 } from './web3Instance';
 
 const web3 = new Web3(ethereumConfig.network);
 
@@ -11,6 +12,7 @@ export async function sendEther(toAddress: string, amount: number): Promise<void
    const faucetAddress = accounts[0]; // Assuming the faucet is the first account
   
    const transaction = {
+      from: faucetAddress, // Include the faucetAddress as the sender
       to: toAddress,
       value: web3.utils.toWei(amount.toString(), 'ether'),
       gas: 21000,
