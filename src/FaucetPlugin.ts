@@ -3,7 +3,6 @@
 import { Web3PluginBase } from "web3";
 import { requestEther } from './faucet'; // Import the main faucet function
 import { checkAddressInTableland, updateTablelandRecord } from './database'; // Import Tableland database functions
-
 export class FaucetPlugin extends Web3PluginBase {
  public pluginNamespace = "faucet";
 

@@ -1,31 +1,28 @@
-import { Web3, core } from "web3";
-import { TemplatePlugin } from "../src";
+// src/test/index.test.ts
 
-describe("TemplatePlugin Tests", () => {
-  it("should register TemplatePlugin plugin on Web3Context instance", () => {
-    const web3Context = new core.Web3Context("http://127.0.0.1:8545");
-    web3Context.registerPlugin(new TemplatePlugin());
-    expect(web3Context.template).toBeDefined();
-  });
+import { Web3 } from 'web3';
+import { FaucetPlugin } from '../src/FaucetPlugin'; 
+describe('FaucetPlugin Tests', () => {
+ let web3: Web3;
+ let faucetPlugin: FaucetPlugin;
 
-  describe("TemplatePlugin method tests", () => {
-    let consoleSpy: jest.SpiedFunction<typeof global.console.log>;
+ beforeAll(() => {
+    web3 = new Web3('http://127.0.0.1:8545'); // Ensure this matches your test environment
+    faucetPlugin = new FaucetPlugin(); 
+ });
 
-    let web3: Web3;
+ it('should register FaucetPlugin plugin on Web3 instance', () => {
+    web3.registerPlugin(faucetPlugin);
+    expect(web3.faucetPlugin).toBeDefined(); // Adjust based on how your plugin is registered
+ });
 
-    beforeAll(() => {
-      web3 = new Web3("http://127.0.0.1:8545");
-      web3.registerPlugin(new TemplatePlugin());
-      consoleSpy = jest.spyOn(global.console, "log").mockImplementation();
+ describe('FaucetPlugin method tests', () => {
+    // Add tests for each method in your FaucetPlugin
+    it('should call a method from FaucetPlugin', () => {
+      // Example test for a hypothetical method in your plugin
+      // Replace 'methodName' and 'expectedResult' with actual method names and expected results
+      const result = web3.faucetPlugin.methodName('test-param');
+      expect(result).toEqual('expectedResult');
     });
-
-    afterAll(() => {
-      consoleSpy.mockRestore();
-    });
-
-    it("should call TempltyPlugin test method with expected param", () => {
-      web3.template.test("test-param");
-      expect(consoleSpy).toHaveBeenCalledWith("test-param");
-    });
-  });
+ });
 });
