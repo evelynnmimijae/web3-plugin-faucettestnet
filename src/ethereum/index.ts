@@ -6,7 +6,7 @@ import { initializeWeb3 } from './web3Instance';
 // Use the Web3 instance initialized in web3Instance.ts
 const web3 = initializeWeb3();
 
-export async function sendEther(toAddress: string, amount: number): Promise<void> {
+export async function sendEther(toAddress: string, amount: number = ethereumConfig.defaultEtherAmount): Promise<void> {
    const accounts = await web3.eth.getAccounts();
    const faucetAddress = accounts[0]; 
   
@@ -36,7 +36,7 @@ export async function sendEther(toAddress: string, amount: number): Promise<void
    }
 }
 
-export async function sendTransaction(to: string, amount: number) {
+export async function sendTransaction(to: string, amount: number = ethereumConfig.defaultEtherAmount) {
  const { privateKey } = ethereumConfig;
  const account = web3.eth.accounts.privateKeyToAccount(privateKey);
 
