@@ -4,7 +4,7 @@ import { hasaddressClaimed, updateClaimRecord } from '../database';
 import { requestEther } from '../faucet'; // Assuming this is where your requestEther function is located
 import CryptoJS from 'crypto-js';
 
-// Encryption key. This should be stored securely and not hard-coded in your application.
+// Encryption key
 const ENCRYPTION_KEY = 'YOUR_SECURE_ENCRYPTION_KEY';
 
 export function encryptData(data: string): string {
