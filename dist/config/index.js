@@ -5,7 +5,7 @@ exports.faucetRules = exports.tablelandConfig = exports.ethereumConfig = void 0;
 // import dotenv from 'dotenv';
 // dotenv.config();
 exports.ethereumConfig = {
-    network: 'https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161', // Example network
+    network: 'https://eth-sepolia.public.blastapi.io', // Example network
     privateKey: process.env.PRIVATE_KEY,
     gasPrice: 20, // Example gas price
     gasLimit: 21000, // Example gas limit

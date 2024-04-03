@@ -4,7 +4,7 @@
 // dotenv.config();
 
 export const ethereumConfig = {
-    network: 'sepolia', // Example network
+    network: 'https://eth-sepolia.public.blastapi.io', // Example network
     privateKey: process.env.PRIVATE_KEY,
     gasPrice: 20, // Example gas price
     gasLimit: 21000, // Example gas limit
