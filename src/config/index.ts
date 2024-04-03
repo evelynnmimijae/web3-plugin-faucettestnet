@@ -1,19 +1,19 @@
 // src/config/index.ts
 
-import dotenv from 'dotenv';
-dotenv.config();
+// import dotenv from 'dotenv';
+// dotenv.config();
 
 export const ethereumConfig = {
-    network: 'ropsten', // Example network
-    privateKey: 'YOUR_PRIVATE_KEY',
+    network: 'sepolia', // Example network
+    privateKey: process.env.PRIVATE_KEY,
     gasPrice: 20, // Example gas price
     gasLimit: 21000, // Example gas limit
     defaultEtherAmount: 0.1,
    };
    
    export const tablelandConfig = {
-    apiKey: 'YOUR_TABLELAND_API_KEY',
-    databaseId: 'YOUR_DATABASE_ID',
+    apiKey: process.env.API_KEY, 
+    databaseId: process.env.DATABASE_ID, 
    };
    
    export const faucetRules = {

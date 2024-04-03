@@ -1,7 +1,5 @@
 import { Web3PluginBase } from "web3";
 import { FaucetPlugin } from './FaucetPlugin';
-import dotenv from 'dotenv';
-dotenv.config();
 
 // Initialize the Faucet Plugin
 const faucetPlugin = new FaucetPlugin();
