@@ -4,6 +4,13 @@ import { Web3 } from 'web3';
 import { FaucetPlugin } from '../src/FaucetPlugin';
 import mockAxios from 'jest-mock-axios';
 
+// Extend the Web3 type to include the faucetPlugin property
+declare module 'web3' {
+   interface Web3 {
+      faucetPlugin: FaucetPlugin;
+   }
+  }
+
 jest.mock('axios', () => mockAxios);
 
 describe('FaucetPlugin Tests', () => {
