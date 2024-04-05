@@ -11,7 +11,7 @@
   "scripts": {
     "lint": "eslint '{src,test}/**/*.ts'",
     "build": "tsc --project tsconfig.build.json",
-    "test": "jest --config=./test/jest.config.js"
+    "test": "mocha --config=./test/mocha.config.js"
   },
   "contributors": [
     "ChainSafe <info@chainsafe.io>"
@@ -30,7 +30,6 @@
     "chai": "^5.1.0",
     "eslint": "8",
     "jest-extended": "^4.0.0",
-    "jest-mock-axios": "^4.7.3",
     "mocha": "^10.4.0",
     "sinon": "^17.0.1",
     "ts-node": "^10.9.2",
