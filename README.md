@@ -34,6 +34,7 @@ How to use
 `npm install`
 
 4. Import, initiate, and use.
+
 import { FaucetPlugin } from './src/FaucetPlugin';
 
 async function main() {
