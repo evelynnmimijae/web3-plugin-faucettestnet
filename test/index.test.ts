@@ -4,7 +4,13 @@ import { Web3 } from 'web3';
 import { FaucetPlugin } from '../src/FaucetPlugin';
 import mockAxios from 'jest-mock-axios';
 
-jest.mock('axios', () => mockAxios);
+// Define mock variables with the 'mock' prefix to avoid hoisting issues
+const mockPost = jest.fn();
+
+// Use the mock variables in the jest.mock() call
+jest.mock('axios', () => ({
+ post: mockPost,
+}));
 
 describe('FaucetPlugin Tests', () => {
  let web3: Web3;
@@ -17,7 +23,7 @@ describe('FaucetPlugin Tests', () => {
 
  it('should register FaucetPlugin plugin on Web3 instance', () => {
     web3.registerPlugin(faucetPlugin);
-    expect(web3.faucetPlugin).toBeDefined();
+    expect((web3 as any).faucetPlugin).toBeDefined();
  });
 
  describe('FaucetPlugin method tests', () => {
@@ -25,19 +31,19 @@ describe('FaucetPlugin Tests', () => {
       const toAddress = '0x123...';
       const amount = 0.1;
 
-      // Mock the response from Tableland's API
-      mockAxios.post.mockResolvedValue({ data: { success: true } });
+      // Use the mock variable directly in your test
+      mockPost.mockResolvedValue({ data: { success: true } });
 
       await faucetPlugin.requestEther(toAddress, amount);
 
-      expect(mockAxios.post).toHaveBeenCalledWith(expect.any(String), expect.any(Object));
+      expect(mockPost).toHaveBeenCalledWith(expect.any(String), expect.any(Object));
     });
 
     it('should handle errors when sending a transaction', async () => {
       const toAddress = '0x123...';
       const amount = 0.1;
 
-      mockAxios.post.mockRejectedValue(new Error('Network error'));
+      mockPost.mockRejectedValue(new Error('Network error'));
 
       await expect(faucetPlugin.requestEther(toAddress, amount)).rejects.toThrow('Network error');
     });
