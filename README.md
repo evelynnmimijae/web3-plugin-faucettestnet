@@ -19,7 +19,7 @@ Security Measures: Secure Storage of Private Keys—Ensures that the faucet's pr
 
 Customization and Extensibility: Customizable Rules allow for customization of rules, such as the amount of Ether distributed per request or the eligibility criteria. Extensibility should be designed to be easily extended with additional features or integrations as needed.
 
-**This is still a work in progress, but feel free to tinker around, make notes, and contribute (see "Contributing" below).**
+*This is still a work in progress, but feel free to tinker around, make notes, and contribute (see "Contributing" below).*
 
 How to use
 ------------
