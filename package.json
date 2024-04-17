@@ -11,7 +11,7 @@
   "scripts": {
     "lint": "eslint '{src,test}/**/*.ts'",
     "build": "tsc --project tsconfig.build.json",
-    "test": "mocha --config=./test/mocha.config.js"
+    "test": "mocha --recursive --exit"
   },
   "contributors": [
     "ChainSafe <info@chainsafe.io>"
