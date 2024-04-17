@@ -9,7 +9,7 @@
 	  "typeRoots": ["./node_modules/@types", "./types"],
 	},
 	"files": ["src/web3-extensions.d.ts"],
-	"include": ["src/**/*", "types/**/*"],
+	"include": ["src/**/*", "types/**/*", "test/**/*"],
 	"exclude": [
 	  "node_modules",
 	  "**/dist/**/*",
