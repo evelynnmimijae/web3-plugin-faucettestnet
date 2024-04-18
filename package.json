@@ -27,10 +27,7 @@
     "@types/inquirer": "^9.0.7",
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.12.3",
-    "chai": "^5.1.0",
     "eslint": "8",
-    "mocha": "^10.4.0",
-    "sinon": "^17.0.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5",
     "web3": "^4.7.0"
