@@ -11,7 +11,7 @@
   "scripts": {
     "lint": "eslint '{src,test}/**/*.ts'",
     "build": "tsc --project tsconfig.build.json",
-    "test": "mocha -r ts-node/register 'test/**/*.test.ts'"
+    "test": "ts-node ./node_modules/.bin/mocha 'test/**/*.test.ts'"
   },
   "contributors": [
     "ChainSafe <info@chainsafe.io>"
