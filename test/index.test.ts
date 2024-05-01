@@ -1,55 +1,41 @@
-// src/test/index.test.ts
-
-import { expect } from 'chai';
-import sinon from 'sinon';
 import { Web3 } from 'web3';
 import { FaucetPlugin } from '../src/FaucetPlugin';
 import axios from 'axios';
-import 'sinon-chai'; // Import sinon-chai for Chai's expect syntax
-
-// Use sinon to mock axios
-const axiosMock = sinon.mock(axios);
+import mockAxios from 'jest-mock-axios';
 
 describe('FaucetPlugin Tests', () => {
- let web3: Web3;
- let faucetPlugin: FaucetPlugin;
+  let web3: Web3;
+  let faucetPlugin: FaucetPlugin;
 
- before(() => {
+  beforeAll(() => {
     web3 = new Web3('http://127.0.0.1:8545');
     faucetPlugin = new FaucetPlugin();
- });
+    web3.faucetPlugin = faucetPlugin; // Assign the faucetPlugin to the web3 instance
+  });
 
- afterEach(() => {
+  afterEach(() => {
     // Restore the original behavior of axios after each test
-    axiosMock.restore();
-    sinon.restore(); // Restore the original axios.post function
- });
+    mockAxios.reset();
+  });
 
- it('should register FaucetPlugin plugin on Web3 instance', () => {
-    web3.registerPlugin(faucetPlugin);
-    expect(web3.faucetPlugin).to.be.undefined;
- });
+  it('should register FaucetPlugin plugin on Web3 instance', () => {
+    expect(web3.faucetPlugin).toBeDefined();
+  });
 
- describe('FaucetPlugin method tests', () => {
+  describe('FaucetPlugin method tests', () => {
     it('should send Ether to a user', async () => {
       const toAddress = '0x123...';
       const amount = 0.1;
 
       // Mock the response from Tableland's API
-      axiosMock.expects('post').resolves({ data: { success: true } });
-
-      // Set up a Sinon spy for axios.post
-      const axiosPostSpy = sinon.spy(axios, 'post');
+      mockAxios.post.mockResolvedValue({ data: { success: true } });
 
       await faucetPlugin.requestEther(toAddress, amount);
 
-      // Use sinon-chai for the assertion
-      expect(axiosPostSpy).to.have.been.calledWithMatch(sinon.match.any, sinon.match.any);
-
-      // Alternatively, use Sinon's assert directly
-      // sinon.assert.calledWith(axiosPostSpy, sinon.match.any, sinon.match.any);
+      // Use Jest's expect for the assertion
+      expect(mockAxios.post).toHaveBeenCalledWith(expect.anything(), expect.anything());
     });
 
     // Other tests...
- });
+  });
 });

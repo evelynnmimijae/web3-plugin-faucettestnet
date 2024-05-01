@@ -38,7 +38,7 @@ describe('FaucetPlugin Tests', () => {
 
     await faucetPlugin.requestEther(toAddress, amount);
 
-    expect(mockAxios.post).toHaveBeenCalledWith(sinon.match.any, sinon.match.any);
+    expect(mockAxios.post).toHaveBeenCalledWith(expect.anything(), expect.anything());
   });
 
   it('should handle errors when sending a transaction', async () => {
