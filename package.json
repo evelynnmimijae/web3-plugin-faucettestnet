@@ -9,7 +9,7 @@
     "url": "https://github.com/web3/web3.js-plugin-template/issues"
   },
   "scripts": {
-    "lint": "eslint '{src,test}/**/*.ts'",
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --ext.js,.jsx,.ts,.tsx",
     "build": "tsc --project tsconfig.build.json",
     "test": "jest 'test/**/*.test.ts'"
   },
