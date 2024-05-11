@@ -59,7 +59,7 @@ var database_1 = require("./database"); // Import Tableland database functions
 var FaucetPlugin = /** @class */ (function (_super) {
     __extends(FaucetPlugin, _super);
     function FaucetPlugin() {
-        var _this = _super.call(this) || this;
+        var _this = this;
         _this.pluginNamespace = "faucet";
         return _this;
         // Initialization logic here, if needed
