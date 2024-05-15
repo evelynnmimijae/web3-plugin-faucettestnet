@@ -5,7 +5,14 @@ import { FaucetPlugin } from './FaucetPlugin';
 const faucetPlugin = new FaucetPlugin();
 
 // Example usage
-faucetPlugin.init();
+(async () => {
+  try {
+    await faucetPlugin.init();
+    console.log("Faucet Plugin initialized successfully.");
+  } catch (error) {
+    console.error("Error initializing Faucet Plugin:", error);
+  }
+})();
 
 export class TemplatePlugin extends Web3PluginBase {
   public pluginNamespace = "template";
