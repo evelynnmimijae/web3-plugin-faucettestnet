@@ -3,7 +3,7 @@ import { tablelandConfig } from '../config';
 
 export async function checkAddressInTableland(address: string): Promise<boolean> {
   try {
-    const response = await axios.get(`https://api.tableland.com/v1/your-table-id/${address}`, {
+    const response = await axios.get(`https://api.tableland.com/v1/${tablelandConfig.tableId}/${address}`, {
       headers: {
         'Authorization': `Bearer ${tablelandConfig.apiKey}`
       }
@@ -92,7 +92,7 @@ export async function updateClaimRecord(userId: string, claimDetails: any) {
 
 export async function updateTablelandRecord(address: string): Promise<void> {
   try {
-    await axios.post('https://api.tableland.com/v1/your-table-id', {
+    await axios.post(`https://api.tableland.com/v1/${tablelandConfig.tableId}`, {
       address: address,
       claimed: true
     }, {
