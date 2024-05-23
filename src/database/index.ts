@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { tablelandConfig } from '../config';
+import { Tableland } from '@tableland/sdk'; 
 
 export async function createFaucetRequestsTable(): Promise<void> {
   try {

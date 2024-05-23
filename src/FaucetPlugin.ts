@@ -13,6 +13,7 @@ export class FaucetPlugin extends Web3PluginBase {
 
  public async init(): Promise<void> {
     // Initialization logic for the faucet plugin
+    await createFaucetRequestsTable(); // Ensure the table exists
     console.log("Faucet Plugin Initialized");
  }
 
