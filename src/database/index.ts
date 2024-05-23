@@ -1,6 +1,29 @@
 import axios from 'axios';
 import { tablelandConfig } from '../config';
 
+export async function createFaucetRequestsTable(): Promise<void> {
+  try {
+      const response = await axios.post(`https://api.tableland.com/v1/databases/${tablelandConfig.databaseId}/tables`, {
+          sql: `
+              CREATE TABLE IF NOT EXISTS faucet_requests (
+                  userId TEXT NOT NULL,
+                  address TEXT NOT NULL,
+                  requestDetails TEXT NOT NULL,
+                  claimDate TEXT NOT NULL,
+                  claimed BOOLEAN NOT NULL
+              );
+          `,
+      }, {
+          headers: {
+              'Authorization': `Bearer ${tablelandConfig.apiKey}`,
+          },
+      });
+      console.log('Table created successfully.');
+  } catch (error) {
+      console.error('Failed to create table:', error);
+  }
+}
+
 export async function checkAddressInTableland(address: string): Promise<boolean> {
   try {
     const response = await axios.get(`https://api.tableland.com/v1/${tablelandConfig.tableId}/${address}`, {
