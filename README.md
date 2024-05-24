@@ -51,7 +51,7 @@ main().catch(console.error);
 
 Contributing
 ------------
-Pull requests are welcome.
+Pull requests are welcome here https://github.com/evelynnmimijae/web3-plugin-faucettestnet
 
 License
 -------
