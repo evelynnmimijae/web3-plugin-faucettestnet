@@ -14,7 +14,8 @@
     "test": "jest 'test/**/*.test.ts'"
   },
   "contributors": [
-    "ChainSafe <info@chainsafe.io>"
+    "ChainSafe <info@chainsafe.io>",
+    "Evelynn Jones <https://github.com/evelynnmimijae>"
   ],
   "license": "MIT",
   "repository": {
