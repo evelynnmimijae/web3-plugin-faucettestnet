@@ -4,7 +4,7 @@
   "description": "A web3.js Faucet Plugin for Testnets using web3.js, Tableland, and smart contracts",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "homepage": "https://github.com/web3/web3.js-plugin-template#readme",
+  "homepage": "https://github.com/evelynnmimijae/web3-plugin-faucettestnet",
   "bugs": {
     "url": "https://github.com/web3/web3.js-plugin-template/issues"
   },
