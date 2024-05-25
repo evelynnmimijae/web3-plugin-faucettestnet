@@ -4,7 +4,7 @@
   "description": "A web3.js Faucet Plugin for Testnets using web3.js, Tableland, and smart contracts",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "homepage": "https://github.com/evelynnmimijae/web3-plugin-faucettestnet",
+  "homepage": "https://msha.ke/faucetplugin",
   "bugs": {
     "url": "https://github.com/web3/web3.js-plugin-template/issues"
   },
@@ -20,7 +20,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:web3/web3.js-plugin-template.git"
+    "url": "git@github.com:evelynnmimijae/web3-plugin-faucettestnet.git"
   },
   "devDependencies": {
     "@chainsafe/eslint-config": "^2.0.0",
