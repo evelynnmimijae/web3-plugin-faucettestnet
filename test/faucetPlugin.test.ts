@@ -1,6 +1,10 @@
 import Web3 from 'web3';
 import { FaucetPlugin } from '../src/FaucetPlugin';
 import mockAxios from 'jest-mock-axios';
+import dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config();
 
 // Extend the Web3 type to include the faucetPlugin property
 declare module 'web3' {
@@ -14,7 +18,11 @@ describe('FaucetPlugin Tests', () => {
   let faucetPlugin: FaucetPlugin;
 
   beforeAll(() => {
-    web3 = new Web3('https://sepolia.infura.io/v3/YOUR_INFURA_PROJECT_ID');
+    const infuraProjectId = process.env.INFURA_PROJECT_ID;
+    if (!infuraProjectId) {
+      throw new Error('Infura Project ID is not defined in the environment variables');
+    }
+    web3 = new Web3(`https://sepolia.infura.io/v3/${infuraProjectId}`);
     faucetPlugin = new FaucetPlugin();
     web3.faucetPlugin = faucetPlugin; // Assign the faucetPlugin to the web3 instance
   });
