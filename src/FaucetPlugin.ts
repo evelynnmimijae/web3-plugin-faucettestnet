@@ -18,6 +18,9 @@ export class FaucetPlugin extends Web3PluginBase {
  }
 
  public async requestEther(address: string, amount: number): Promise<void> {
+   if (!address || amount <= 0) {
+      throw new Error('Invalid request: address or amount is missing or invalid.');
+   }
     // Check if the address has already claimed Ether
     const hasClaimed = await checkAddressInTableland(address);
     if (hasClaimed) {

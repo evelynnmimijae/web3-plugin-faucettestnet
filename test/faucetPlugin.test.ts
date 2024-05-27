@@ -14,7 +14,7 @@ describe('FaucetPlugin Tests', () => {
   let faucetPlugin: FaucetPlugin;
 
   beforeAll(() => {
-    web3 = new Web3('http://127.0.0.1:8545');
+    web3 = new Web3('https://sepolia.infura.io/v3/YOUR_INFURA_PROJECT_ID');
     faucetPlugin = new FaucetPlugin();
     web3.faucetPlugin = faucetPlugin; // Assign the faucetPlugin to the web3 instance
   });
