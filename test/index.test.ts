@@ -1,3 +1,4 @@
+// test/index.test.ts
 import Web3 from 'web3';
 import { FaucetPlugin } from '../src/FaucetPlugin';
 import mockAxios from 'jest-mock-axios';
@@ -53,7 +54,6 @@ describe('FaucetPlugin Tests', () => {
     });
 
     it('should validate request details', async () => {
-      const faucetPlugin = new FaucetPlugin();
       const toAddress = '0xInvalidAddress';
       const amount = -0.1;
 
