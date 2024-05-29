@@ -57,7 +57,7 @@ describe('FaucetPlugin Tests', () => {
       const toAddress = '0xInvalidAddress';
       const amount = -0.1;
 
-      await expect(faucetPlugin.requestEther(toAddress, amount)).rejects.toThrow('Invalid request: toAddress or amount is missing or invalid.');
+      await expect(faucetPlugin.requestEther(toAddress, amount)).rejects.toThrow('Invalid request: address or amount is missing or invalid.');
     });
 
     // Add more tests as needed to cover different scenarios and edge cases

@@ -3,7 +3,7 @@ import { FaucetPlugin } from '../src/FaucetPlugin';
 import mockAxios from 'jest-mock-axios';
 import dotenv from 'dotenv';
 
-// Load environment variables from.env file
+// Load environment variables from .env file
 dotenv.config();
 
 // Extend the Web3 type to include the faucetPlugin property
@@ -36,5 +36,37 @@ describe('FaucetPlugin Tests', () => {
     expect(web3.faucetPlugin).toBeDefined();
   });
 
-  // Continue with your tests...
+  describe('FaucetPlugin method tests', () => {
+    it('should send Ether to a user', async () => {
+      const toAddress = '0x1234567890abcdef1234567890abcdef12345678';
+      const amount = 0.1;
+
+      // Mock the response from Tableland's API
+      mockAxios.post.mockResolvedValue({ data: { success: true } });
+
+      await faucetPlugin.requestEther(toAddress, amount);
+
+      // Use Jest's expect for the assertion
+      expect(mockAxios.post).toHaveBeenCalledWith(expect.anything(), expect.anything(), expect.anything());
+    });
+
+    it('should handle errors when sending a transaction', async () => {
+      const toAddress = '0x1234567890abcdef1234567890abcdef12345678';
+      const amount = 0.1;
+
+      // Mock the error response from Tableland's API
+      mockAxios.post.mockRejectedValue(new Error('Network error'));
+
+      await expect(faucetPlugin.requestEther(toAddress, amount)).rejects.toThrow('Network error');
+    });
+
+    it('should validate request details', async () => {
+      const toAddress = '0xInvalidAddress';
+      const amount = -0.1;
+
+      await expect(faucetPlugin.requestEther(toAddress, amount)).rejects.toThrow('Invalid request: address or amount is missing or invalid.');
+    });
+
+    // Add more tests as needed to cover different scenarios and edge cases
+  });
 });
